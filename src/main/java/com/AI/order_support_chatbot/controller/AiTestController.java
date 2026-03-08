@@ -13,7 +13,8 @@ import java.util.Map;
 @RestController
 public class AiTestController {
 
-    private static final String URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyD8Yx9GngNAJ4GdTvA9O9PqS3lVeVYrAzw";
+    // create an api key from- https://aistudio.google.com
+    private static final String URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=type-your-API-key";
 
     @GetMapping("/api/test")
     public Map<String, Object> test(
