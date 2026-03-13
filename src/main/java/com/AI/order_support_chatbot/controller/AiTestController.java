@@ -13,17 +13,13 @@ import java.util.Map;
 @RestController
 public class AiTestController {
 
-<<<<<<< HEAD
-    private static final String URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyA-Uv243ry4GD7WL3zC8jrCFPZziSDakyo";
-=======
-    // create an api key from- https://aistudio.google.com
-    private static final String URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=type-your-API-key";
->>>>>>> 9c89a1b3894c819203d5ef01d374bdf28532154d
+    private static final String BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=";
 
     @GetMapping("/api/test")
     public Map<String, Object> test(
             @RequestParam(defaultValue = "Say hello in one sentence") String message) {
         try {
+            String apiKey = System.getenv("GEMINI_API_KEY");
             String body = """
             {
                 "contents": [{"role": "user", "parts": [{"text": "%s"}]}]
@@ -31,7 +27,7 @@ public class AiTestController {
             """.formatted(message);
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(URL))
+                    .uri(URI.create(BASE_URL + apiKey))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(body))
                     .build();
